@@ -78,7 +78,19 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(KINECTSDK20_DIR)inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+	<Link>
+      <AdditionalLibraryDirectories>$(KINECTSDK20_DIR)Redist\Face\x86;$(KINECTSDK20_DIR)Lib\x86\;$(KINECTSDK20_DIR)bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Kinect20.lib;Kinect20.Face.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AssemblyLinkResource>Kinect20.Face.dll;%(AssemblyLinkResource)</AssemblyLinkResource>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(KINECTSDK20_DIR)Redist\Face\x86\NuiDatabase" "$(TargetDir)NuiDatabase" /e /y /i /r
+xcopy "$(KINECTSDK20_DIR)Redist\Face\x86\*.dll" "$(TargetDir)" /e /y /i /r
+      </Command>
+    </PostBuildEvent>
+
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
