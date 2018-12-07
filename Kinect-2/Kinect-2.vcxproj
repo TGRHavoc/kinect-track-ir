@@ -100,11 +100,14 @@ xcopy "$(KINECTSDK20_DIR)Redist\Face\x86\*.dll" "$(TargetDir)" /e /y /i /r
       <AdditionalIncludeDirectories>$(KINECTSDK20_DIR)inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(KINECTSDK20_DIR)Lib\x64\;$(KINECTSDK20_DIR)bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(KINECTSDK20_DIR)Redist\Face\x64;$(KINECTSDK20_DIR)Lib\x64\;$(KINECTSDK20_DIR)bin\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Kinect20.lib;Kinect20.Face.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AssemblyLinkResource>Kinect20.Face.dll;%(AssemblyLinkResource)</AssemblyLinkResource>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(KINECTSDK20_DIR)Redist\Face\x64\NuiDatabase" "$(TargetDir)NuiDatabase" /e /y /i /r</Command>
+      <Command>xcopy "$(KINECTSDK20_DIR)Redist\Face\x64\NuiDatabase" "$(TargetDir)NuiDatabase" /e /y /i /r
+xcopy "$(KINECTSDK20_DIR)Redist\Face\x64\*.dll" "$(TargetDir)" /e /y /i /r
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
